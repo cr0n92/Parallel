@@ -1,0 +1,30 @@
+#include <unistd.h>
+#include <stdio.h>
+#include <sys/time.h>
+
+cilk int sum(int l, int u) {
+	if (l == u) 
+		return l;
+	else {
+		int lower, upper;
+		int mid = (l+u)/2;
+		lower = spawn sum(l, mid);
+		upper = spawn sum(mid+1, u);
+		sync;
+		return (lower+upper);
+	}
+}
+
+cilk int main(int argc, char * argv[]){
+
+	struct timeval ts,tf;
+	int n = atoi(argv[1]);
+	int res = 0;
+
+	gettimeofday(&ts,NULL);
+	res = spawn sum(0,n); 
+	sync;
+	gettimeofday(&tf,NULL);
+
+	printf("Result %d Time %.6lf sec\n", res, tf.tv_sec-ts.tv_sec+(tf.tv_usec-ts.tv_usec)*0.000001);
+} 

@@ -1,0 +1,11 @@
+#define __TBB_VERSION_STRINGS(N) \
+#N": BUILD_HOST		sandman (x86_64)" ENDL \
+#N": BUILD_OS		Debian GNU/Linux 6.0 n l" ENDL \
+#N": BUILD_KERNEL	Linux 3.7.10-jimsiak-dev-mem-patch #1 SMP Tue Jul 1 20:20:13 EEST 2014" ENDL \
+#N": BUILD_GCC		g++ (GCC) 4.6.3" ENDL \
+#N": BUILD_LIBC	2.11.3" ENDL \
+#N": BUILD_LD		" ENDL \
+#N": BUILD_TARGET	intel64 on cc4.6.3_libc2.11.3_kernel3.7.10" ENDL \
+#N": BUILD_COMMAND	/various/common_tools/gcc-4.9.1/bin/g++ -DTBB_USE_DEBUG -DDO_ITT_NOTIFY -g -O0 -DUSE_PTHREAD -m64 -fPIC -D__TBB_BUILD=1 -Wall -Wno-parentheses -Wno-non-virtual-dtor -I../../src -I../../src/rml/include -I../../include -I." ENDL \
+
+#define __TBB_DATETIME "Sat Nov 21 16:10:56 UTC 2015"

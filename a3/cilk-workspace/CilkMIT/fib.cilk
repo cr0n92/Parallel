@@ -1,0 +1,37 @@
+#include <stdio.h>
+#include <sys/time.h>
+#include <unistd.h>
+
+int fib_serial(int n) {
+	int x, y;
+	if ( n < 2 )
+		return n;
+	x = fib_serial(n-1);
+	y = fib_serial(n-2);
+	return (x+y);
+}
+
+cilk int fib(int n) {
+	int x, y;
+	if ( n < 10 ) 
+		return fib_serial(n);
+	x = spawn fib(n-1);
+	y = spawn fib(n-2);
+	sync;
+	return x+y;
+}
+
+cilk int main (int argc, char * argv[]) {
+
+	int n = atoi(argv[1]);
+	struct timeval ts,tf;
+	int res;
+
+	gettimeofday(&ts, NULL);
+	res = spawn fib(n);
+	sync;
+	gettimeofday(&tf, NULL);
+
+	printf("Result %d Time %.6lf sec\n", res, tf.tv_sec-ts.tv_sec+(tf.tv_usec-ts.tv_usec)*0.000001);
+	return 0;
+}
