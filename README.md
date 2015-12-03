@@ -1,2 +1,2 @@
 # Parallel
-smoutsi
+smoutsi 3
